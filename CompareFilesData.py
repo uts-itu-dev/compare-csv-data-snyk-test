@@ -1,9 +1,10 @@
 import os
 
-HOME_DIR = os.path.abspath(os.pardir)
+OldFile = "OldFile.txt"
+NewFile = "NewFile.txt"
 
-OldPath = HOME_DIR+"\\Techdebt-Project\\OldFile.txt"
-NewPath = HOME_DIR+"\\Techdebt-Project\\NewFile.txt"
+OldPath = os.path.abspath(OldFile)
+NewPath = os.path.abspath(NewFile)
 
 if os.path.exists(OldPath) and os.path.exists(NewPath):
     
