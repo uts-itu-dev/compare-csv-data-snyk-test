@@ -15,4 +15,4 @@ jobs:
           python-version: '3.11.2'
       
       - name: Running the CompareFilesData Test
-        run: python3 ./CompareFilesData.py
+        run: python ./CompareFilesData.py
