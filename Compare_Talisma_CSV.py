@@ -20,4 +20,3 @@ else:
 # Close the database connection
 conn.close()
 
-#yo
