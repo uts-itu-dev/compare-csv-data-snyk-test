@@ -1,0 +1,38 @@
+import boto3
+import io
+import zipfile
+import hashlib
+
+# Set up the S3 client
+s3 = boto3.client('s3')
+
+# Define the source and target S3 buckets
+source_bucket = 'source-bucket'
+target_bucket = 'target-bucket'
+
+# Define the source and target zip file keys
+source_zip_key = 'path/to/source/file.zip'
+target_zip_key = 'path/to/target/file.zip'
+
+# Download the source and target zip files from S3
+source_zip_object = s3.get_object(Bucket=source_bucket, Key=source_zip_key)
+source_zip_data = io.BytesIO(source_zip_object['Body'].read())
+target_zip_object = s3.get_object(Bucket=target_bucket, Key=target_zip_key)
+target_zip_data = io.BytesIO(target_zip_object['Body'].read())
+
+# Extract the contents of the source and target zip files
+with zipfile.ZipFile(source_zip_data, 'r') as source_zip:
+    source_files = source_zip.namelist()
+with zipfile.ZipFile(target_zip_data, 'r') as target_zip:
+    target_files = target_zip.namelist()
+
+# Verify the contents of the source and target zip files by comparing the file checksums
+for file in source_files:
+    source_file_object = s3.get_object(Bucket=source_bucket, Key=file)
+    source_file_data = source_file_object['Body'].read()
+    source_file_md5 = hashlib.md5(source_file_data).hexdigest()
+    target_file_object = s3.get_object(Bucket=target_bucket, Key=file)
+    target_file_data = target_file_object['Body'].read()
+    target_file_md5 = hashlib.md5(target_file_data).hexdigest()
+    if source_file_md5 != target_file_md5:
+        print(f"File {file} in source zip does not match file in target zip")

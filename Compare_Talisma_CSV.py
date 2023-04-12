@@ -1,8 +1,12 @@
+import os
 import pandas 
 import psycopg2
 
+
+username = os.environ.get('TALISMA_USERNAME')
+
 # Connect to the Talisma database
-conn = psycopg2.connect(database="your_database_name", user="your_username", password="your_password", host="your_host", port="your_port")
+conn = psycopg2.connect(database="your_database_name", user=username, password="your_password", host="your_host", port="your_port")
 
 # Load the CSV file into a pandas DataFrame
 csv_data = pandas.read_csv("your_csv_file.csv")
@@ -20,3 +24,5 @@ else:
 # Close the database connection
 conn.close()
 
+
+print(username)
