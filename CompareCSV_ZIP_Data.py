@@ -1,8 +1,8 @@
 import zipfile
 import csv
 
-#csv_file_path = 'path/to/csv/file.csv'
-#zip_file_path = 'path/to/zip/file.zip'
+csv_file_path = 'OldFile.csv'
+zip_file_path = 'NewFile.csv.tar.gz'
 
 def verify_csv_zip(csv_file_path, zip_file_path):
     with zipfile.ZipFile(zip_file_path, 'r') as zip_file:
