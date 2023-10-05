@@ -22,4 +22,4 @@ if os.path.exists(OldPath) and os.path.exists(NewPath):
     else:
         print("Files are not the same.")
 
-        #lol
+        
