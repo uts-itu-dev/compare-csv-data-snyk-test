@@ -22,7 +22,7 @@ else:
     print("Data in Talisma database does not match data in CSV file")
     
 # Close the database connection
-conn.close()
+#conn.close()
 
 
 print(username)
