@@ -12,7 +12,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            stmt.close();
-            conn.close();
+            //stmt.close();
+            //conn.close();
         }
     }
