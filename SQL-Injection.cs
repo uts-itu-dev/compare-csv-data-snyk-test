@@ -1,4 +1,4 @@
-protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+protected void main doPost(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -6,13 +6,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         Connection conn = null;
         Statement stmt = null;
         try {
+            Console.WriteLine("Hello World!");
             conn = DriverManager.getConnection(connectionString, dbUser, dbPassword);
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            //stmt.close();
-            //conn.close();
+            stmt.close();
+            conn.close();
         }
     }
